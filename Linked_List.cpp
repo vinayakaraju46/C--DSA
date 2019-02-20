@@ -20,11 +20,13 @@ class LinkedList
 {
 private:
 	Node<T> *head;	
+  int size;
 
 public:
 	LinkedList()
 	{ 
 		head = NULL;
+	  size = 0;
 
 	}
 
@@ -64,6 +66,22 @@ public:
 		return *this;
 
 	}
+  
+  LinkedList<T> &insertend(const T &value)
+  {	size++ ;
+    Node<T> *newNode = new Node<T>(value);
+    Node<T> *actualNode = head;
+    
+    while (actualNode->nextNode != NULL)
+    {
+      actualNode = actualNode->nextNode;
+    }
+    actualNode->nextNode = newNode;
+    return *this;
+  }
+  
+  
+  
 
 	LinkedList<T> &traverse(void)
 	{
@@ -78,24 +96,33 @@ public:
 	}
 };
 
-
+int sizeoflist(void)
+{
+  return size;
+}
 
 
 int main()
 {
-
-	LinkedList<int> L;
-    int N,item;
-    cout << "Enter the number of elements in a List...." << endl;
-    cout << "" << endl;
-    cin >> N;
-    cout << "" << endl;
-    for(int i=0; i<N; i++)
-    {
-    	cin >> item;
-    	L.insert(item);
-    }
-    cout << "" << endl;
-    L.traverse();
-	return 0;
+  
+  LinkedList<int> L;
+  int N,item,enditem;
+  cout << "Enter the number of elements in a List...." << endl;
+  cout << "" << endl;
+  cin >> N;
+  cout << "" << endl;
+  for(int i=0; i<N; i++)
+  {
+    cin >> item;
+    L.insert(item);
+  }
+  cout << "" << endl;
+  L.traverse();
+  cout << "End insert" << endl;
+  cin >> enditem ;
+  L.insertend(enditem);
+  cout << "" << endl;
+  L.traverse();
+  cout << "size of list..." << L.sizeoflist() << endl; 
+  return 0;
 }
