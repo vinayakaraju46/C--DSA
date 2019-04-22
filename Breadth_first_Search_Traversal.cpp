@@ -34,7 +34,7 @@ class Node
 };
 
 
-//Stack....... 
+//Queue....... 
 template<class T>
 class Queue
 {
